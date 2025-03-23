@@ -12,7 +12,7 @@ jpg = convert_from_path(documento) #CONVERTIMOS EL DOCUMENTO DE PDF A JPG
 imagen_0 = jpg[0] #OCUPAMOS SOLO LA PRIMER PAGINA
 
 ancho, alto = imagen_0.size #DEFINIMOS EL TAMAÑO DE LA IMAGEN
-imagen = imagen_0.crop((0, 0, ancho*0.70, alto))  #RECORTAMOS HORIZONTALMENTE LA IMAGEN AL 70%
+imagen = imagen_0.crop((ancho*0.25, 0, ancho*0.75, 0.80*alto))  #RECORTAMOS LA IMAGEN PARA QUE QUEDE SOLO LA REGION A ANALIZAR
 
 texto = pytesseract.image_to_string(imagen, lang="spa") # ESTO ES PARA EXTRAER EL TEXTO ("SPA" ES ESPAÑOL)
 lineas = [linea.strip() for linea in texto.split("\n") if linea.strip()] #ORGANIZAMOS EL TEXTO POR LINEAS
@@ -35,3 +35,4 @@ for i, linea in enumerate(lineas):  # IDENTIFICA EL TEXTO DE LAS PRIMERAS TRES L
 
 print("Nombre:", nombre_completo)
 print("Domicilio:", domicilio)
+#print(texto)
